@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 // ============================================
 // Azure Cosmos DB Client — Lazy Initialization
 // ============================================
