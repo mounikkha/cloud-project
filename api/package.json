@@ -2,9 +2,9 @@
   "name": "carpool-api",
   "version": "1.0.0",
   "type": "module",
-  "main": "src/functions/*.js",
   "scripts": {
-    "start": "func start"
+    "start": "func start",
+    "build": "echo done"
   },
   "dependencies": {
     "@azure/cosmos": "^4.0.0",
