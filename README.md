@@ -1,4 +1,4 @@
-# 🚗 RideSync — Cloud-Based Carpool Discovery System 
+# 🚗 RideSync — Cloud-Based Carpool Discovery System
 
 > **Design and Implementation of a Cloud-Based Carpool Discovery System Using Azure**
 
