@@ -1,12 +1,6 @@
-// ============================================
-// Azure Cosmos DB Client — Lazy Initialization
-// ============================================
-// Auto-creates the database and containers on first access.
-
 import { CosmosClient } from '@azure/cosmos';
 
 const DB_NAME = 'carpoolDB';
-
 const CONTAINERS = {
   users: { id: 'users', partitionKey: '/email' },
   travelPlans: { id: 'travelPlans', partitionKey: '/userId' },
@@ -20,8 +14,8 @@ function getClient() {
   if (!client) {
     const endpoint = process.env.COSMOS_ENDPOINT;
     const key = process.env.COSMOS_KEY;
-    if (!endpoint || !key || endpoint === 'YOUR_VALUE') {
-      throw new Error('COSMOS_ENDPOINT and COSMOS_KEY must be set in environment / local.settings.json');
+    if (!endpoint || !key) {
+      throw new Error('COSMOS_ENDPOINT and COSMOS_KEY must be set');
     }
     client = new CosmosClient({ endpoint, key });
   }
@@ -44,7 +38,7 @@ export async function getContainer(name) {
   if (!spec) throw new Error(`Unknown container: ${name}`);
   const { container } = await db.containers.createIfNotExists({
     id: spec.id,
-    partitionKey: { paths: [spec.partitionKey] },
+    partitionKey: spec.partitionKey,
   });
   containerCache[name] = container;
   return container;
